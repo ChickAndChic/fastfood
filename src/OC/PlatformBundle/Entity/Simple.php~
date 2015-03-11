@@ -1,0 +1,84 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Simple
+ *
+ * @ORM\Table(name="Simple")
+ * @ORM\Entity
+ */
+class Simple
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="SeuilStock", type="integer", nullable=false)
+     */
+    private $seuilstock;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Stock", type="integer", nullable=false)
+     */
+    private $stock;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LibelleProd", type="string", length=32, nullable=false)
+     */
+    private $libelleprod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PrixUnitProduit", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $prixunitproduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TypeUnit", type="string", length=32, nullable=false)
+     */
+    private $typeunit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="SeuilPrep", type="integer", nullable=false)
+     */
+    private $seuilprep;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="TpsConso", type="time", nullable=false)
+     */
+    private $tpsconso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Image", type="blob", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     * })
+     */
+    private $idproduit;
+
+
+}

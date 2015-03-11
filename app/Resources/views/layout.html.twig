@@ -1,0 +1,62 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/business/css/bootstrap.css') }}"
+            type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/business/css/bootstrap.min.css') }}"
+            type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/business/css/business-casual.css') }}"
+            type="text/css" media="all" />
+            <link href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic') }}" rel="stylesheet" type="text/css">
+        {% endblock %}
+        <title>
+            {% block title %}
+                OC Platform
+            {% endblock %}
+        </title>
+
+
+    </head>
+    <body>
+        <div class="brand">Chick and Chic</div>
+        <div class="address-bar">55 Rue du Faubourg Saint-Honoré | 75008 Paris | 01 42 92 81 00</div>
+
+        <!-- Navigation -->
+        {% block navigation %}
+
+        {% endblock%}
+        <!-- /.container -->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Projet 2014-2015</p>
+                    </div>
+                </div>
+            </div>
+
+
+        <script src="{{ asset('bundles/business/js/jquery.js') }}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ asset('bundles/business/js/bootstrap.min.js') }}"></script>
+
+        <!-- Script to Activate the Carousel -->
+        <script>
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+        </script>
+
+    </body>
+    </html>

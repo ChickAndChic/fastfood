@@ -1,0 +1,92 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Compose
+ *
+ * @ORM\Table(name="Compose")
+ * @ORM\Entity
+ */
+class Compose
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LibelleProd", type="string", length=32, nullable=false)
+     */
+    private $libelleprod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PrixUnitProduit", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $prixunitproduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TypeUnit", type="string", length=32, nullable=false)
+     */
+    private $typeunit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="SeuilPrep", type="integer", nullable=false)
+     */
+    private $seuilprep;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="TpsConso", type="time", nullable=false)
+     */
+    private $tpsconso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Image", type="blob", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     * })
+     */
+    private $idproduit;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Ingredient", inversedBy="idproduit")
+     * @ORM\JoinTable(name="contient",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IdIngredient", referencedColumnName="IdIngredient")
+     *   }
+     * )
+     */
+    private $idingredient;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idingredient = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

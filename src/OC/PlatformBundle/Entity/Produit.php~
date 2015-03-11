@@ -1,0 +1,99 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Produit
+ *
+ * @ORM\Table(name="Produit", indexes={@ORM\Index(name="FK_Produit_Categorie", columns={"IDCATEGORIE"})})
+ * @ORM\Entity
+ */
+class Produit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IdProduit", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idproduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LibelleProd", type="string", length=32, nullable=false)
+     */
+    private $libelleprod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PrixUnitProduit", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $prixunitproduit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TypeUnit", type="string", length=32, nullable=false)
+     */
+    private $typeunit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="SeuilPrep", type="integer", nullable=false)
+     */
+    private $seuilprep;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="TpsConso", type="time", nullable=false)
+     */
+    private $tpsconso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Image", type="blob", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var \Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IDCATEGORIE", referencedColumnName="IDCATEGORIE")
+     * })
+     */
+    private $idcategorie;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="idproduit")
+     */
+    private $idcommande;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Menu", mappedBy="idproduit")
+     */
+    private $idmenu;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idcommande = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idmenu = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

@@ -1,0 +1,59 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Demandereappro
+ *
+ * @ORM\Table(name="DemandeReappro", indexes={@ORM\Index(name="FK_DemandeReappro_Simple", columns={"IdProduit"}), @ORM\Index(name="FK_DemandeReappro_Ingredient", columns={"IdIngredient"}), @ORM\Index(name="IDX_5C94913151582F30", columns={"IdResto"})})
+ * @ORM\Entity
+ */
+class Demandereappro
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantitereappro", type="bigint", nullable=false)
+     */
+    private $quantitereappro;
+
+    /**
+     * @var \Restaurant
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Restaurant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdResto", referencedColumnName="IdResto")
+     * })
+     */
+    private $idresto;
+
+    /**
+     * @var \Simple
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Simple")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     * })
+     */
+    private $idproduit;
+
+    /**
+     * @var \Ingredient
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Ingredient")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdIngredient", referencedColumnName="IdIngredient")
+     * })
+     */
+    private $idingredient;
+
+
+}

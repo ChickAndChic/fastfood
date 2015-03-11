@@ -1,0 +1,53 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Manager
+ *
+ * @ORM\Table(name="Manager", indexes={@ORM\Index(name="Restaurant", columns={"IdResto"})})
+ * @ORM\Entity
+ */
+class Manager
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idManager", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idmanager;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IdResto", type="integer", nullable=false)
+     */
+    private $idresto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=20, nullable=false)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=10, nullable=false)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mdp", type="string", length=10, nullable=false)
+     */
+    private $mdp;
+
+
+}

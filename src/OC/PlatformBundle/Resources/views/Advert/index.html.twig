@@ -1,0 +1,90 @@
+        {% extends "OCPlatformBundle::layout.html.twig" %}
+
+        {% block title %}{{ parent() }} - Index{% endblock %}
+
+        {% block container %}
+        <div class="container">
+
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12 text-center">
+                        <div id="carousel-example-generic" class="carousel slide">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators hidden-xs">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="img-responsive img-full" src="{{ asset('bundles/business/img/hamburger11.png') }}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive img-full" src="{{ asset('bundles/business/img/salades22.png') }}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive img-full" src="{{ asset('bundles/business/img/boisson11.png') }}" alt="">
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="icon-prev"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="icon-next"></span>
+                            </a>
+                        </div>
+                        <h2 class="brand-before">
+                            <small>Welcome to</small>
+                        </h2>
+                        <h1 class="brand-name">
+                            Chick and Chic
+                        </h1>
+                        <hr class="tagline-divider">
+                        <h2>
+                            <img class="img-centre" src="{{ asset('bundles/business/img/logo11.png') }}" alt="" >
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        {% block paragraphe %}
+        <!-- création d'un cadre -->
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        <strong>
+                            Blap
+                        </strong>
+                    </h2>
+                    <hr>
+                    <img class="img-responsive img-border img-left" src="{{ asset('bundles/business/img/intro-pic.jpg')}}" alt="">
+                    <hr class="visible-xs">
+                    <p>
+                        Test
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        <strong>
+                            Blop
+                        </strong>
+                    </h2>
+                    <hr>
+                    <p>
+                        Bleble
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

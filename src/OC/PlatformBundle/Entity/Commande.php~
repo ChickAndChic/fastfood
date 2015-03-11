@@ -1,0 +1,77 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commande
+ *
+ * @ORM\Table(name="Commande")
+ * @ORM\Entity
+ */
+class Commande
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IDCOMMANDE", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcommande;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="HEURERECUP", type="time", nullable=true)
+     */
+    private $heurerecup;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ETATCOMMANDE", type="string", length=255, nullable=false)
+     */
+    private $etatcommande;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="idcommande")
+     * @ORM\JoinTable(name="commandemenu",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IDCOMMANDE", referencedColumnName="IDCOMMANDE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU")
+     *   }
+     * )
+     */
+    private $idmenu;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Produit", inversedBy="idcommande")
+     * @ORM\JoinTable(name="commandeprodhorsmenu",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IDCOMMANDE", referencedColumnName="IDCOMMANDE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     *   }
+     * )
+     */
+    private $idproduit;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idmenu = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idproduit = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

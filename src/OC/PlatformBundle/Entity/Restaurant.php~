@@ -1,0 +1,39 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Restaurant
+ *
+ * @ORM\Table(name="Restaurant")
+ * @ORM\Entity
+ */
+class Restaurant
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IdResto", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idresto;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Menu", mappedBy="idresto")
+     */
+    private $idmenu;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idmenu = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

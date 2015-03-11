@@ -1,0 +1,63 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Preparation
+ *
+ * @ORM\Table(name="Preparation", indexes={@ORM\Index(name="FK_Preparation_Produit", columns={"IdProduit"})})
+ * @ORM\Entity
+ */
+class Preparation
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Idprep", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idprep;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="HeureDebut", type="time", nullable=false)
+     */
+    private $heuredebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="HeureDispo", type="time", nullable=false)
+     */
+    private $heuredispo;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Dispo", type="boolean", nullable=false)
+     */
+    private $dispo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="HeureFin", type="time", nullable=false)
+     */
+    private $heurefin;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     * })
+     */
+    private $idproduit;
+
+
+}

@@ -1,0 +1,93 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Menu
+ *
+ * @ORM\Table(name="Menu")
+ * @ORM\Entity
+ */
+class Menu
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IDMENU", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idmenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LIBELLEMENU", type="string", length=255, nullable=true)
+     */
+    private $libellemenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PRIXUNITMENU", type="decimal", precision=4, scale=2, nullable=false)
+     */
+    private $prixunitmenu;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="idmenu")
+     */
+    private $idcommande;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Restaurant", inversedBy="idmenu")
+     * @ORM\JoinTable(name="defini",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IdResto", referencedColumnName="IdResto")
+     *   }
+     * )
+     */
+    private $idresto;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Categorie", mappedBy="idmenu")
+     */
+    private $idcategorie;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Produit", inversedBy="idmenu")
+     * @ORM\JoinTable(name="prodauxchoixdansmenu",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IdProduit", referencedColumnName="IdProduit")
+     *   }
+     * )
+     */
+    private $idproduit;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idcommande = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idresto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idcategorie = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idproduit = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

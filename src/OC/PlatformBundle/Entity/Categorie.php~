@@ -1,0 +1,54 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Categorie
+ *
+ * @ORM\Table(name="Categorie")
+ * @ORM\Entity
+ */
+class Categorie
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="IDCATEGORIE", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcategorie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LIBELLECAT", type="string", length=255, nullable=true)
+     */
+    private $libellecat;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="idcategorie")
+     * @ORM\JoinTable(name="formule",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="IDCATEGORIE", referencedColumnName="IDCATEGORIE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU")
+     *   }
+     * )
+     */
+    private $idmenu;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idmenu = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
