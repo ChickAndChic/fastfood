@@ -22,6 +22,11 @@ class AdvertController extends Controller
     'listAdverts' => array()));
     }
 
+    public function menuAction()
+    {
+    return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
+    'listAdverts' => array()));
+    }
 
 
     public function produitAction()
