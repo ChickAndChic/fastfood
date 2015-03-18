@@ -4,11 +4,12 @@ namespace OC\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Produit
  *
  * @ORM\Table(name="Produit", indexes={@ORM\Index(name="FK_Produit_Categorie", columns={"IDCATEGORIE"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\ProduitRepository")
  */
 class Produit
 {
@@ -59,7 +60,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="Image", type="blob", nullable=true)
+     * @ORM\Column(name="Image", type="string", length=40, nullable=true)
      */
     private $image;
 

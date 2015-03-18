@@ -59,7 +59,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="Image", type="blob", nullable=true)
+     * @ORM\Column(name="Image", type="string", length=40, nullable=true)
      */
     private $image;
 

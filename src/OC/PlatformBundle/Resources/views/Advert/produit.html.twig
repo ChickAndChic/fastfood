@@ -1,37 +1,158 @@
-    {% extends "OCPlatformBundle::layout.html.twig" %}
+{# src/OC/PlatformBundle/Resources/views/Advert/produit.html.twig  #}
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{#{% block categorie %}
+    <div class="container">
+        <div class="row">
+            <div class="box">
+            {% for cat in cate %}
+                <div class="col-sm-4 text-center">
+                    <h3> {{ cat.libellecat }}</h3>
+
+                    {#<a href= {{ path('produit') ~ '#' ~ cat.libellecat }} <img class="img-responsive img-border" src ="{{ asset(''~cat.image~'') }}"  alt="{{ cat.libellecat }} image not found"/> </a>#}
+                {#</div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}#}
 
     {% block produit %}
     <div class="container">
     <div class="row">
         <div class="box">
+            {% for cat in cate %}
             <div class="col-lg-12">
                 <hr>
-                <h2 class="intro-text text-center">Our
-                    <strong>Team</strong>
+                <h2 class="intro-text text-center">
+
+                    <strong> {{ cat.libellecat }}</strong>
+                </h2>
+                <hr>
+
+                {% for prod in produits %}
+                    {% if prod.idcategorie.idcategorie == cat.idcategorie %}
+
+                        <div class="col-sm-4 text-center">
+                            <h3>{{ prod.libelleprod }}</h3>
+                            <img class="img-responsive img-border" src ="{{ asset(''~prod.image~'') }}"  alt="{{ prod.libelleprod }} image not found"/>
+                            <h4>{{ prod.prixunitproduit }}€</h4>
+                            <div class="ajout">
+                                <form method="get" action="{{ path('oc_platform_ajouter', {'id':prod.idproduit}) }}">
+                                <select name="qte" class="span1">
+                                    {% for i in 1..10 %}
+                                    <option value="{{ i }}"> {{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button class="btn btn-danger btn-small" >Ajouter au panier</button>
+                                {#<button class="btn btn-danger btn-small" onclick="self.location.href='{{ path('oc_platform_panier'), {} }}'"><i class="icon-shopping-cart" ></i> Ajouter au panier</button>
+                                <a class="btn btn-danger btn-small" href="{{ path('oc_platform_ajouter', {'id':prod.idproduit}) }}"> Ajouter au panier</a>#}
+                                </form>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            {% endfor %}
+
+           {# <div class="col-lg-12" id="salade">
+                <hr>
+                <h2 class="intro-text text-center">
+                    <strong>Salade</strong>
                 </h2>
                 <hr>
             </div>
-            <div class="col-sm-4 text-center">
-                <img class="img-responsive img-border" src="{{ asset('bundles/business/img/intro-pic.jpg')}}" alt="">
-                <h3>John Smith
-                    <small>Job Title</small>
-                </h3>
+            {% for prod in produits %}
+                {% if prod.idcategorie.idcategorie == '5' %}
+
+                    <div class="col-sm-4 text-center">
+                        <h3>{{ prod.libelleprod }}</h3>
+                        <img class="img-responsive img-border" src ="{{ asset(''~prod.image~'') }}"  alt="{{ prod.libelleprod }} image not found"/>
+                        <h4>{{ prod.prixunitproduit }}€</h4>
+                        <div class="ajout">
+                            <input class="span1" type="number"  size="2" value="1">
+                            <button class="btn btn-danger btn-small"><i class="icon-shopping-cart"></i> Ajouter au panier</button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+            <div class="col-lg-12" id="accompagnement">
+                <hr>
+                <h2 class="intro-text text-center">
+                    <strong>Accompagnement</strong>
+                </h2>
+                <hr>
             </div>
-            <div class="col-sm-4 text-center">
-                <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                <h3>John Smith
-                    <small>Job Title</small>
-                </h3>
+            {% for prod in produits %}
+                {% if prod.idcategorie.idcategorie == '2' %}
+
+                    <div class="col-sm-4 text-center">
+                        <h3>{{ prod.libelleprod }}</h3>
+                        <img class="img-responsive img-border" src ="{{ asset(''~prod.image~'') }}"  alt="{{ prod.libelleprod }} image not found"/>
+                        <h4>{{ prod.prixunitproduit }}€</h4>
+                        <div class="ajout">
+                            <input class="span1" type="number"  size="2" value="1">
+                            <button class="btn btn-danger btn-small"><i class="icon-shopping-cart"></i> Ajouter au panier</button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center" id="boisson">
+                    <strong>Boissons</strong>
+                </h2>
+                <hr>
             </div>
-            <div class="col-sm-4 text-center">
-                <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                <h3>John Smith
-                    <small>Job Title</small>
-                </h3>
+            {% for prod in produits %}
+                {% if prod.idcategorie.idcategorie == '1' %}
+
+                    <div class="col-sm-4 text-center">
+                        <h3>{{ prod.libelleprod }}</h3>
+                        <img class="img-responsive img-border" src ="{{ asset(''~prod.image~'') }}"  alt="{{ prod.libelleprod }} image not found"/>
+                        <h4>{{ prod.prixunitproduit }}€</h4>
+                        <div class="ajout">
+                            <input class="span1" type="number"  size="2" value="1">
+                            <button class="btn btn-danger btn-small"><i class="icon-shopping-cart"></i> Ajouter au panier</button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="col-lg-12" id="dessert">
+                <hr>
+                <h2 class="intro-text text-center">
+                    <strong>Dessert</strong>
+                </h2>
+                <hr>
             </div>
+            {% for prod in produits %}
+                {% if prod.idcategorie.idcategorie == '4' %}
+
+                    <div class="col-sm-4 text-center">
+                        <h3>{{ prod.libelleprod }}</h3>
+                        <img class="img-responsive img-border" src ="{{ asset(''~prod.image~'') }}"  alt="{{ prod.libelleprod }} image not found"/>
+                        <h4>{{ prod.prixunitproduit }}€</h4>
+                        <div class="ajout">
+                            <input class="span1" type="number"  size="2" value="1">
+                            <button class="btn btn-danger btn-small"><i class="icon-shopping-cart"></i> Ajouter au panier</button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}#}
             <div class="clearfix"></div>
         </div>
     </div>
     </div>
     {% endblock %}
 
+    {% block javascripts %}
+       {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {% endblock %}

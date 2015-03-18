@@ -4,7 +4,18 @@ oc_platform_home:
 
 oc_platform_produit:
     path:     /produit
-    defaults: { _controller: OCPlatformBundle:Advert:produit  }
+    defaults: { _controller: OCPlatformBundle:Advert:produit }
+    #template: 'OCPlatformBundle:Static:produit.html.twig'
+
+
+oc_platform_hamburger:
+     path:     /hamburger
+     defaults: { _controller: OCPlatformBundle:Advert:hamburger }
+
+oc_platform_dessert:
+     path:     /dessert
+     defaults: { _controller: OCPlatformBundle:Advert:dessert }
+
 
 oc_platform_contact:
     path:     /contact
@@ -16,13 +27,22 @@ oc_platform_blog:
     requirements:
             page: \d*
 
+oc_platform_panier:
+    path:     /panier
+    defaults: { _controller: OCPlatformBundle:Advert:panier  }
+
+
 oc_platform_view:
     path:     /advert/{id}
     defaults: { _controller: OCPlatformBundle:Advert:view  }
 
-oc_platform_add:
-    path:     /add
-    defaults: {_controller:OCPlatformBundle:Advert:add  }
+oc_platform_ajouter:
+    path:     /ajouter/{id}
+    defaults: {_controller:OCPlatformBundle:Advert:ajouter  }
+
+oc_platform_supprimer:
+    path:     /supprimer/{id}
+    defaults: {_controller:OCPlatformBundle:Advert:supprimer  }
 
 oc_platform_edit:
     path:     /edit/{id}

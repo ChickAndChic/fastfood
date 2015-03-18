@@ -29,6 +29,13 @@ class Categorie
     private $libellecat;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=40, nullable=false)
+     */
+    private $image;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Menu", inversedBy="idcategorie")
@@ -83,6 +90,29 @@ class Categorie
     public function getLibellecat()
     {
         return $this->libellecat;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Categorie
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
