@@ -36,6 +36,13 @@ class Menu
     private $prixunitmenu;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=40, nullable=false)
+     */
+    private $image;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Commande", mappedBy="idmenu")

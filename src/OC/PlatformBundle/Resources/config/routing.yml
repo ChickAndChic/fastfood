@@ -59,3 +59,7 @@ oc_platform_delete:
 oc_platform_menu:
     path:     /menu
     defaults: {_controller:OCPlatformBundle:Advert:menu  }
+
+oc_platform_paiement:
+    path:     /paiement
+    defaults: {_controller:OCPlatformBundle:Advert:paiement  }

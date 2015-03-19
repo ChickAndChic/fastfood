@@ -27,6 +27,8 @@ use OC\PlatformBundle\Entity\Produit;
 use OC\PlatformBundle\Entity\Restaurant;
 use OC\PlatformBundle\Entity\Simple;
 use OC\PlatformBundle\Repository\ProduitRepository;
+use Doctrine\ORM\EntityRepository;
+
 
 
 class AdvertController extends Controller
@@ -40,8 +42,23 @@ class AdvertController extends Controller
 
     public function menuAction()
     {
-    return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
-    'listAdverts' => array()));
+
+        $menu = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('OCPlatformBundle:Menu');
+
+        $men = $menu->findAll();
+
+        $categorie= $this->getDoctrine()
+            ->getManager()
+            ->getRepository('OCPlatformBundle:Categorie');
+
+        $cat=$categorie->findAll();
+
+
+        return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
+        'menu'=>$men,
+        'cate'=>$cat));
     }
 
 
@@ -136,9 +153,46 @@ class AdvertController extends Controller
         if(array_key_exists($id, $panier)){
             unset($panier[$id]);
             $session->set('panier',$panier);
+            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
         }
 
         return $this->redirect($this->generateUrl('oc_platform_panier'));
+    }
+
+    public function paiementAction(){
+
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier');
+
+        /*for ($i=1; $i<=40;$i++){
+            if(array_key_exists($i, $panier)){
+                $article= new Commande();
+                $article-> addIdproduit($i);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+            }
+
+        }*/
+
+
+        foreach($panier as $article){
+           //var_dump($session->get('panier'));
+            //die();
+            $article= new Commande();
+            $id=$article.getIdproduit();
+            $article-> addidproduit($id);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            return new Response("ça marche");
+        }
+
+
+
     }
 
 

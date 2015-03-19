@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 11 Mars 2015 à 10:23
+-- Généré le :  Mer 18 Mars 2015 à 17:18
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -22,19 +22,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Categorie` (
 `IDCATEGORIE` int(2) NOT NULL,
-  `LIBELLECAT` char(255) DEFAULT NULL
+  `LIBELLECAT` char(255) DEFAULT NULL,
+  `image` varchar(40) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `Categorie`
 --
 
-INSERT INTO `Categorie` (`IDCATEGORIE`, `LIBELLECAT`) VALUES
-(1, 'Boisson'),
-(2, 'Accompagnement'),
-(3, 'Hamburger'),
-(4, 'Dessert'),
-(5, 'Salade');
+INSERT INTO `Categorie` (`IDCATEGORIE`, `LIBELLECAT`, `image`) VALUES
+(1, 'Boisson', ''),
+(2, 'Accompagnement', ''),
+(3, 'Hamburger', ''),
+(4, 'Dessert', ''),
+(5, 'Salade', '');
 
 -- --------------------------------------------------------
 
@@ -146,6 +147,21 @@ CREATE TABLE `Formule` (
   `IDMENU` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `Formule`
+--
+
+INSERT INTO `Formule` (`IDCATEGORIE`, `IDMENU`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(1, 4),
+(5, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -196,17 +212,18 @@ CREATE TABLE `Manager` (
 CREATE TABLE `Menu` (
 `IDMENU` int(2) NOT NULL,
   `LIBELLEMENU` char(255) DEFAULT NULL,
-  `PRIXUNITMENU` decimal(4,2) NOT NULL
+  `PRIXUNITMENU` decimal(4,2) NOT NULL,
+  `image` varchar(40) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `Menu`
 --
 
-INSERT INTO `Menu` (`IDMENU`, `LIBELLEMENU`, `PRIXUNITMENU`) VALUES
-(1, 'Berk Of', 7.00),
-(2, 'Maxi Berk Of', 8.00),
-(4, 'Vegetarien', 6.00);
+INSERT INTO `Menu` (`IDMENU`, `LIBELLEMENU`, `PRIXUNITMENU`, `image`) VALUES
+(1, 'Berk Of', 7.00, 'img/menu1.jpg'),
+(2, 'Maxi Berk Of', 8.00, 'img/menu1.jpg'),
+(4, 'Vegetarien', 6.00, 'saladeceaser.png');
 
 -- --------------------------------------------------------
 
@@ -248,7 +265,7 @@ CREATE TABLE `Produit` (
   `TypeUnit` char(32) NOT NULL,
   `SeuilPrep` int(2) NOT NULL,
   `TpsConso` time NOT NULL,
-  `Image` longblob
+  `Image` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
@@ -256,25 +273,25 @@ CREATE TABLE `Produit` (
 --
 
 INSERT INTO `Produit` (`IdProduit`, `IDCATEGORIE`, `LibelleProd`, `PrixUnitProduit`, `TypeUnit`, `SeuilPrep`, `TpsConso`, `Image`) VALUES
-(1, 1, 'Coca-Cola', 2.50, 'ml', 0, '00:30:00', NULL),
-(2, 2, 'Petite Frite', 3.00, 'g', 6, '00:30:00', NULL),
-(3, 3, 'Big Krac', 4.50, '', 4, '01:00:00', NULL),
-(4, 1, 'Coca-Cola light', 2.50, 'ml', 0, '00:30:00', NULL),
-(5, 1, 'Coca-Cola zero', 2.50, 'ml', 0, '00:30:00', NULL),
-(6, 1, 'Jus d''orange', 2.50, 'ml', 0, '00:30:00', NULL),
-(7, 1, 'Perrier', 2.50, 'ml', 0, '00:30:00', NULL),
-(8, 2, 'Moyenne Frite', 4.00, 'g', 6, '00:30:00', NULL),
-(9, 2, 'Grande Frite', 5.00, 'g', 5, '00:30:00', NULL),
-(10, 2, 'Salade Verte', 3.50, 'g', 0, '00:30:00', NULL),
-(11, 3, 'Fish', 4.00, '', 2, '00:30:00', NULL),
-(12, 3, 'Cheese', 4.50, '', 4, '00:30:00', NULL),
-(13, 3, 'Farmer', 4.50, '', 3, '00:30:00', NULL),
-(14, 4, 'Salade de Fruits', 2.50, '', 3, '10:00:00', NULL),
-(15, 4, 'Glace Chocolat', 3.00, '', 0, '00:05:00', NULL),
-(16, 4, 'Glace Vanille', 3.00, '', 0, '00:05:00', NULL),
-(17, 4, 'Brownie', 3.50, '', 5, '15:00:00', NULL),
-(18, 5, 'César', 4.50, '', 2, '01:00:00', NULL),
-(19, 5, 'Campagnarde', 5.00, '', 1, '02:00:00', NULL);
+(1, 1, 'Coca-Cola', 2.50, 'ml', 0, '00:30:00', 'img/coca.jpg'),
+(2, 2, 'Petite Frite', 3.00, 'g', 6, '00:30:00', 'img/frite.jpg'),
+(3, 3, 'Big Krac', 4.50, '', 4, '01:00:00', 'img/bigkrac.jpg'),
+(4, 1, 'Coca-Cola light', 2.50, 'ml', 0, '00:30:00', 'img/cocal.jpg'),
+(5, 1, 'Coca-Cola zero', 2.50, 'ml', 0, '00:30:00', 'img/cocaz.jpg'),
+(6, 1, 'Jus d''orange', 2.50, 'ml', 0, '00:30:00', 'img/orange.jpg'),
+(7, 1, 'Perrier', 2.50, 'ml', 0, '00:30:00', 'img/per.png'),
+(8, 2, 'Moyenne Frite', 4.00, 'g', 6, '00:30:00', 'img/frite.jpg'),
+(9, 2, 'Grande Frite', 5.00, 'g', 5, '00:30:00', 'img/frite.jpg'),
+(10, 2, 'Salade Verte', 3.50, 'g', 0, '00:30:00', 'img/salade.jpg'),
+(11, 3, 'Fish', 4.00, '', 2, '00:30:00', 'img/fish.jpg'),
+(12, 3, 'Cheese', 4.50, '', 4, '00:30:00', 'img/Cheese.jpg'),
+(13, 3, 'Farmer', 4.50, '', 3, '00:30:00', 'img/Farmer.jpg'),
+(14, 4, 'Salade de Fruits', 2.50, '', 3, '10:00:00', 'img/fruit.png'),
+(15, 4, 'Glace Chocolat', 3.00, '', 0, '00:05:00', 'img/cho.jpg'),
+(16, 4, 'Glace Vanille', 3.00, '', 0, '00:05:00', 'img/van.jpg'),
+(17, 4, 'Brownie', 3.50, '', 5, '15:00:00', 'img/brow.png'),
+(18, 5, 'César', 4.50, '', 2, '01:00:00', 'img/saladecesar.jpg'),
+(19, 5, 'Campagnarde', 5.00, '', 1, '02:00:00', 'img/saladecampagnarde.jpg');
 
 -- --------------------------------------------------------
 

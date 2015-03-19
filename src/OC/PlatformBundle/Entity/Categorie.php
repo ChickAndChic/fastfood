@@ -41,10 +41,10 @@ class Categorie
      * @ORM\ManyToMany(targetEntity="Menu", inversedBy="idcategorie")
      * @ORM\JoinTable(name="formule",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="IDCATEGORIE", referencedColumnName="IDCATEGORIE")
+     *     @ORM\JoinColumn(name="IDCATEGORIE", referencedColumnName="IDCATEGORIE", nullable=false)
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU")
+     *     @ORM\JoinColumn(name="IDMENU", referencedColumnName="IDMENU", nullable=false)
      *   }
      * )
      */
@@ -146,5 +146,14 @@ class Categorie
     public function getIdmenu()
     {
         return $this->idmenu;
+    }
+
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getIdmenu();
     }
 }

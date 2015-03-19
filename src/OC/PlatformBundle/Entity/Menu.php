@@ -36,6 +36,13 @@ class Menu
     private $prixunitmenu;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=40, nullable=false)
+     */
+    private $image;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Commande", mappedBy="idmenu")
@@ -94,7 +101,7 @@ class Menu
     /**
      * Get idmenu
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdmenu()
     {
@@ -117,7 +124,7 @@ class Menu
     /**
      * Get libellemenu
      *
-     * @return string 
+     * @return string
      */
     public function getLibellemenu()
     {
@@ -140,11 +147,34 @@ class Menu
     /**
      * Get prixunitmenu
      *
-     * @return string 
+     * @return string
      */
     public function getPrixunitmenu()
     {
         return $this->prixunitmenu;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Menu
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -173,7 +203,7 @@ class Menu
     /**
      * Get idcommande
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdcommande()
     {
@@ -206,7 +236,7 @@ class Menu
     /**
      * Get idresto
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdresto()
     {
@@ -239,7 +269,7 @@ class Menu
     /**
      * Get idcategorie
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdcategorie()
     {
@@ -272,10 +302,13 @@ class Menu
     /**
      * Get idproduit
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdproduit()
     {
         return $this->idproduit;
     }
+
+
 }
+
