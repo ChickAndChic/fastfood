@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Manager" table="Manager">
+    <indexes>
+      <index name="Restaurant" columns="IdResto"/>
+    </indexes>
+    <id name="idmanager" type="integer" column="idManager">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idresto" type="integer" column="IdResto" nullable="false"/>
+    <field name="nom" type="string" column="nom" length="20" nullable="false"/>
+    <field name="login" type="string" column="login" length="10" nullable="false"/>
+    <field name="mdp" type="string" column="mdp" length="10" nullable="false"/>
+  </entity>
+</doctrine-mapping>

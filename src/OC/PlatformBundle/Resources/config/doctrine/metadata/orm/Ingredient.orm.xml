@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ingredient" table="Ingredient">
+    <id name="idingredient" type="integer" column="IdIngredient">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="libelleingr" type="string" column="LibelleIngr" length="255" nullable="false"/>
+    <field name="seuilstock" type="integer" column="SeuilStock" nullable="false"/>
+    <field name="stock" type="integer" column="Stock" nullable="false"/>
+    <many-to-many field="idproduit" target-entity="Compose" mapped-by="idingredient"/>
+  </entity>
+</doctrine-mapping>

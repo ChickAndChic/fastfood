@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Categorie" table="Categorie">
+    <id name="idcategorie" type="integer" column="IDCATEGORIE">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="libellecat" type="string" column="LIBELLECAT" length="255" nullable="true"/>
+    <field name="image" type="string" column="image" length="40" nullable="false"/>
+    <many-to-many field="idmenu" target-entity="Menu" inversed-by="idcategorie">
+      <join-table name="formule">
+        <join-columns>
+          <join-column name="IDCATEGORIE" referenced-column-name="IDCATEGORIE"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="IDMENU" referenced-column-name="IDMENU"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

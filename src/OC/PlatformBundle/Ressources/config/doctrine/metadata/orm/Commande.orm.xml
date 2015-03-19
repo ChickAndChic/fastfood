@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Commande" table="Commande">
+    <id name="idcommande" type="integer" column="IDCOMMANDE">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="heurerecup" type="time" column="HEURERECUP" nullable="true"/>
+    <field name="etatcommande" type="string" column="ETATCOMMANDE" length="255" nullable="false"/>
+    <many-to-many field="idproduit" target-entity="Produit" inversed-by="idcommande">
+      <join-table name="commandeprodhorsmenu">
+        <join-columns>
+          <join-column name="IDCOMMANDE" referenced-column-name="IDCOMMANDE"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="IdProduit" referenced-column-name="IdProduit"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="idmenu" target-entity="Menu" inversed-by="idcommande">
+      <join-table name="commandemenu">
+        <join-columns>
+          <join-column name="IDCOMMANDE" referenced-column-name="IDCOMMANDE"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="IDMENU" referenced-column-name="IDMENU"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>
